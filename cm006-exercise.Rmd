@@ -303,6 +303,7 @@ How many countries are in each continent? Use the year 2007.
 
 
 
+
 3. Notice the y-axis. Oddly, `ggplot2` doesn't make it obvious how to change to proportion. Try adding a `y` aesthetic: `y=..count../sum(..count..)`.
 
 
