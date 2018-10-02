@@ -1685,12 +1685,55 @@ $(document).ready(function () {
 {"columns":[{"label":["Film"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Race"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Gender"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Word"],"name":[4],"type":["int"],"align":["right"]}],"data":[{"1":"The Fellowship Of The Ring","2":"Elf","3":"Female","4":"1229"},{"1":"The Fellowship Of The Ring","2":"Hobbit","3":"Female","4":"14"},{"1":"The Fellowship Of The Ring","2":"Man","3":"Female","4":"0"},{"1":"The Two Towers","2":"Elf","3":"Female","4":"331"},{"1":"The Two Towers","2":"Hobbit","3":"Female","4":"0"},{"1":"The Two Towers","2":"Man","3":"Female","4":"401"},{"1":"The Return Of The King","2":"Elf","3":"Female","4":"183"},{"1":"The Return Of The King","2":"Hobbit","3":"Female","4":"2"},{"1":"The Return Of The King","2":"Man","3":"Female","4":"268"},{"1":"The Fellowship Of The Ring","2":"Elf","3":"Male","4":"971"},{"1":"The Fellowship Of The Ring","2":"Hobbit","3":"Male","4":"3644"},{"1":"The Fellowship Of The Ring","2":"Man","3":"Male","4":"1995"},{"1":"The Two Towers","2":"Elf","3":"Male","4":"513"},{"1":"The Two Towers","2":"Hobbit","3":"Male","4":"2463"},{"1":"The Two Towers","2":"Man","3":"Male","4":"3589"},{"1":"The Return Of The King","2":"Elf","3":"Male","4":"510"},{"1":"The Return Of The King","2":"Hobbit","3":"Male","4":"2673"},{"1":"The Return Of The King","2":"Man","3":"Male","4":"2459"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
+<pre class="r"><code>gather(lotr_untidy, key = &quot;Gender&quot;, value = &quot;Word&quot;, Female:Male)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Film"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Race"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Gender"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Word"],"name":[4],"type":["int"],"align":["right"]}],"data":[{"1":"The Fellowship Of The Ring","2":"Elf","3":"Female","4":"1229"},{"1":"The Fellowship Of The Ring","2":"Hobbit","3":"Female","4":"14"},{"1":"The Fellowship Of The Ring","2":"Man","3":"Female","4":"0"},{"1":"The Two Towers","2":"Elf","3":"Female","4":"331"},{"1":"The Two Towers","2":"Hobbit","3":"Female","4":"0"},{"1":"The Two Towers","2":"Man","3":"Female","4":"401"},{"1":"The Return Of The King","2":"Elf","3":"Female","4":"183"},{"1":"The Return Of The King","2":"Hobbit","3":"Female","4":"2"},{"1":"The Return Of The King","2":"Man","3":"Female","4":"268"},{"1":"The Fellowship Of The Ring","2":"Elf","3":"Male","4":"971"},{"1":"The Fellowship Of The Ring","2":"Hobbit","3":"Male","4":"3644"},{"1":"The Fellowship Of The Ring","2":"Man","3":"Male","4":"1995"},{"1":"The Two Towers","2":"Elf","3":"Male","4":"513"},{"1":"The Two Towers","2":"Hobbit","3":"Male","4":"2463"},{"1":"The Two Towers","2":"Man","3":"Male","4":"3589"},{"1":"The Return Of The King","2":"Elf","3":"Male","4":"510"},{"1":"The Return Of The King","2":"Hobbit","3":"Male","4":"2673"},{"1":"The Return Of The King","2":"Man","3":"Male","4":"2459"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>gather(lotr_untidy, key = &quot;Gender&quot;, value = &quot;Word&quot;, contains(&quot;ale&quot;)) </code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Film"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Race"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Gender"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Word"],"name":[4],"type":["int"],"align":["right"]}],"data":[{"1":"The Fellowship Of The Ring","2":"Elf","3":"Female","4":"1229"},{"1":"The Fellowship Of The Ring","2":"Hobbit","3":"Female","4":"14"},{"1":"The Fellowship Of The Ring","2":"Man","3":"Female","4":"0"},{"1":"The Two Towers","2":"Elf","3":"Female","4":"331"},{"1":"The Two Towers","2":"Hobbit","3":"Female","4":"0"},{"1":"The Two Towers","2":"Man","3":"Female","4":"401"},{"1":"The Return Of The King","2":"Elf","3":"Female","4":"183"},{"1":"The Return Of The King","2":"Hobbit","3":"Female","4":"2"},{"1":"The Return Of The King","2":"Man","3":"Female","4":"268"},{"1":"The Fellowship Of The Ring","2":"Elf","3":"Male","4":"971"},{"1":"The Fellowship Of The Ring","2":"Hobbit","3":"Male","4":"3644"},{"1":"The Fellowship Of The Ring","2":"Man","3":"Male","4":"1995"},{"1":"The Two Towers","2":"Elf","3":"Male","4":"513"},{"1":"The Two Towers","2":"Hobbit","3":"Male","4":"2463"},{"1":"The Two Towers","2":"Man","3":"Male","4":"3589"},{"1":"The Return Of The King","2":"Elf","3":"Male","4":"510"},{"1":"The Return Of The King","2":"Hobbit","3":"Male","4":"2673"},{"1":"The Return Of The King","2":"Man","3":"Male","4":"2459"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 <ol start="3" style="list-style-type: decimal">
 <li>Try again (bind and tidy the three untidy data frames), but without knowing how many tables there are originally.
 <ul>
 <li>The additional work here does not require any additional tools from the tidyverse, but instead uses a <code>do.call</code> from base R – a useful tool in data analysis when the number of “items” is variable/unknown, or quite large.</li>
 </ul></li>
 </ol>
+<pre class="r"><code>lotr_list &lt;- list(lotr1, lotr2, lotr3)
+lotr_list</code></pre>
+<pre><code>## [[1]]
+## # A tibble: 3 x 4
+##   Film                       Race   Female  Male
+##   &lt;chr&gt;                      &lt;chr&gt;   &lt;int&gt; &lt;int&gt;
+## 1 The Fellowship Of The Ring Elf      1229   971
+## 2 The Fellowship Of The Ring Hobbit     14  3644
+## 3 The Fellowship Of The Ring Man         0  1995
+## 
+## [[2]]
+## # A tibble: 3 x 4
+##   Film           Race   Female  Male
+##   &lt;chr&gt;          &lt;chr&gt;   &lt;int&gt; &lt;int&gt;
+## 1 The Two Towers Elf       331   513
+## 2 The Two Towers Hobbit      0  2463
+## 3 The Two Towers Man       401  3589
+## 
+## [[3]]
+## # A tibble: 3 x 4
+##   Film                   Race   Female  Male
+##   &lt;chr&gt;                  &lt;chr&gt;   &lt;int&gt; &lt;int&gt;
+## 1 The Return Of The King Elf       183   510
+## 2 The Return Of The King Hobbit      2  2673
+## 3 The Return Of The King Man       268  2459</code></pre>
+<pre class="r"><code>do.call(bind_rows, lotr_list)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Film"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Race"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Female"],"name":[3],"type":["int"],"align":["right"]},{"label":["Male"],"name":[4],"type":["int"],"align":["right"]}],"data":[{"1":"The Fellowship Of The Ring","2":"Elf","3":"1229","4":"971"},{"1":"The Fellowship Of The Ring","2":"Hobbit","3":"14","4":"3644"},{"1":"The Fellowship Of The Ring","2":"Man","3":"0","4":"1995"},{"1":"The Two Towers","2":"Elf","3":"331","4":"513"},{"1":"The Two Towers","2":"Hobbit","3":"0","4":"2463"},{"1":"The Two Towers","2":"Man","3":"401","4":"3589"},{"1":"The Return Of The King","2":"Elf","3":"183","4":"510"},{"1":"The Return Of The King","2":"Hobbit","3":"2","4":"2673"},{"1":"The Return Of The King","2":"Man","3":"268","4":"2459"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 </div>
 <div id="spread" class="section level2">
 <h2><code>spread()</code></h2>
@@ -1706,17 +1749,114 @@ $(document).ready(function () {
 ##   Words = col_integer()
 ## )</code></pre>
 <p>Get word counts across “Race”. Then try “Gender”.</p>
+<pre class="r"><code>spread(lotr_tidy, key = &quot;Race&quot;, value = &quot;Words&quot;)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Film"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Gender"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Elf"],"name":[3],"type":["int"],"align":["right"]},{"label":["Hobbit"],"name":[4],"type":["int"],"align":["right"]},{"label":["Man"],"name":[5],"type":["int"],"align":["right"]}],"data":[{"1":"The Fellowship Of The Ring","2":"Female","3":"1229","4":"14","5":"0"},{"1":"The Fellowship Of The Ring","2":"Male","3":"971","4":"3644","5":"1995"},{"1":"The Return Of The King","2":"Female","3":"183","4":"2","5":"268"},{"1":"The Return Of The King","2":"Male","3":"510","4":"2673","5":"2459"},{"1":"The Two Towers","2":"Female","3":"331","4":"0","5":"401"},{"1":"The Two Towers","2":"Male","3":"513","4":"2463","5":"3589"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 <p>Now try combining race and gender. Use <code>unite()</code> from <code>tidyr</code> instead of <code>paste()</code>.</p>
+<pre class="r"><code>lotr_tidy %&gt;% 
+  unite(Race_Gender, Race, Gender) %&gt;% 
+  spread(key= &quot;Race_Gender&quot;, value = &quot;Words&quot;)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Film"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Elf_Female"],"name":[2],"type":["int"],"align":["right"]},{"label":["Elf_Male"],"name":[3],"type":["int"],"align":["right"]},{"label":["Hobbit_Female"],"name":[4],"type":["int"],"align":["right"]},{"label":["Hobbit_Male"],"name":[5],"type":["int"],"align":["right"]},{"label":["Man_Female"],"name":[6],"type":["int"],"align":["right"]},{"label":["Man_Male"],"name":[7],"type":["int"],"align":["right"]}],"data":[{"1":"The Fellowship Of The Ring","2":"1229","3":"971","4":"14","5":"3644","6":"0","7":"1995"},{"1":"The Return Of The King","2":"183","3":"510","4":"2","5":"2673","6":"268","7":"2459"},{"1":"The Two Towers","2":"331","3":"513","4":"0","5":"2463","6":"401","7":"3589"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>lotr_tidy %&gt;% 
+  mutate(x= rnorm(nrow(lotr_tidy))) %&gt;% 
+  spread(key = &quot;Gender&quot;, value = &quot;x&quot;)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Film"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Race"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Words"],"name":[3],"type":["int"],"align":["right"]},{"label":["Female"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Male"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"The Fellowship Of The Ring","2":"Elf","3":"971","4":"NA","5":"1.0006426"},{"1":"The Fellowship Of The Ring","2":"Elf","3":"1229","4":"0.4336149","5":"NA"},{"1":"The Fellowship Of The Ring","2":"Hobbit","3":"14","4":"-0.7205064","5":"NA"},{"1":"The Fellowship Of The Ring","2":"Hobbit","3":"3644","4":"NA","5":"1.3880558"},{"1":"The Fellowship Of The Ring","2":"Man","3":"0","4":"-0.7115174","5":"NA"},{"1":"The Fellowship Of The Ring","2":"Man","3":"1995","4":"NA","5":"-1.5654920"},{"1":"The Return Of The King","2":"Elf","3":"183","4":"1.0701241","5":"NA"},{"1":"The Return Of The King","2":"Elf","3":"510","4":"NA","5":"1.5400454"},{"1":"The Return Of The King","2":"Hobbit","3":"2","4":"0.6257177","5":"NA"},{"1":"The Return Of The King","2":"Hobbit","3":"2673","4":"NA","5":"1.9197844"},{"1":"The Return Of The King","2":"Man","3":"268","4":"0.1148207","5":"NA"},{"1":"The Return Of The King","2":"Man","3":"2459","4":"NA","5":"0.5710796"},{"1":"The Two Towers","2":"Elf","3":"331","4":"-1.2231446","5":"NA"},{"1":"The Two Towers","2":"Elf","3":"513","4":"NA","5":"0.3493434"},{"1":"The Two Towers","2":"Hobbit","3":"0","4":"1.6050584","5":"NA"},{"1":"The Two Towers","2":"Hobbit","3":"2463","4":"NA","5":"0.4068199"},{"1":"The Two Towers","2":"Man","3":"401","4":"0.7963911","5":"NA"},{"1":"The Two Towers","2":"Man","3":"3589","4":"NA","5":"1.5470405"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 </div>
 <div id="other-tidyr-goodies" class="section level2">
 <h2>Other <code>tidyr</code> goodies</h2>
 <p>Check out the Examples in the documentation to explore the following.</p>
 <p><code>expand</code> vs <code>complete</code> (trim vs keep everything). Together with <code>nesting</code>. Check out the Examples in the <code>expand</code> documentation.</p>
+<pre class="r"><code>expand(mtcars, vs, cyl)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["vs"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["cyl"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"0","2":"4"},{"1":"0","2":"6"},{"1":"0","2":"8"},{"1":"1","2":"4"},{"1":"1","2":"6"},{"1":"1","2":"8"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>df &lt;- tibble(
+  year   = c(2010, 2010, 2010, 2010, 2012, 2012, 2012),
+  qtr    = c(   1,    2,    3,    4,    1,    2,    3),
+  return = rnorm(7)
+)
+df %&gt;% expand(year, qtr)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["year"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["qtr"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"2010","2":"1"},{"1":"2010","2":"2"},{"1":"2010","2":"3"},{"1":"2010","2":"4"},{"1":"2012","2":"1"},{"1":"2012","2":"2"},{"1":"2012","2":"3"},{"1":"2012","2":"4"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>df %&gt;% expand(year = full_seq(year, 1), qtr)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["year"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["qtr"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"2010","2":"1"},{"1":"2010","2":"2"},{"1":"2010","2":"3"},{"1":"2010","2":"4"},{"1":"2011","2":"1"},{"1":"2011","2":"2"},{"1":"2011","2":"3"},{"1":"2011","2":"4"},{"1":"2012","2":"1"},{"1":"2012","2":"2"},{"1":"2012","2":"3"},{"1":"2012","2":"4"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>df %&gt;% complete(year = full_seq(year, 1), qtr)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["year"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["qtr"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["return"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"2010","2":"1","3":"-0.1051679"},{"1":"2010","2":"2","3":"1.2367738"},{"1":"2010","2":"3","3":"0.3266808"},{"1":"2010","2":"4","3":"0.4196098"},{"1":"2011","2":"1","3":"NA"},{"1":"2011","2":"2","3":"NA"},{"1":"2011","2":"3","3":"NA"},{"1":"2011","2":"4","3":"NA"},{"1":"2012","2":"1","3":"-0.7520188"},{"1":"2012","2":"2","3":"-1.0087361"},{"1":"2012","2":"3","3":"-0.6128120"},{"1":"2012","2":"4","3":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>experiment &lt;- tibble(
+  name = rep(c(&quot;Alex&quot;, &quot;Robert&quot;, &quot;Sam&quot;), c(3, 2, 1)),
+  trt  = rep(c(&quot;a&quot;, &quot;b&quot;, &quot;a&quot;), c(3, 2, 1)),
+  rep = c(1, 2, 3, 1, 2, 1),
+  measurment_1 = runif(6),
+  measurment_2 = runif(6)
+)
+experiment</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["trt"],"name":[2],"type":["chr"],"align":["left"]},{"label":["rep"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["measurment_1"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["measurment_2"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"Alex","2":"a","3":"1","4":"0.09799905","5":"0.7521136"},{"1":"Alex","2":"a","3":"2","4":"0.38302922","5":"0.3698994"},{"1":"Alex","2":"a","3":"3","4":"0.35725703","5":"0.1638440"},{"1":"Robert","2":"b","3":"1","4":"0.37343102","5":"0.3502406"},{"1":"Robert","2":"b","3":"2","4":"0.09311535","5":"0.2375756"},{"1":"Sam","2":"a","3":"1","4":"0.75992671","5":"0.4122698"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>all &lt;- experiment %&gt;% expand(nesting(name, trt), rep)
+all</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["trt"],"name":[2],"type":["chr"],"align":["left"]},{"label":["rep"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Alex","2":"a","3":"1"},{"1":"Alex","2":"a","3":"2"},{"1":"Alex","2":"a","3":"3"},{"1":"Robert","2":"b","3":"1"},{"1":"Robert","2":"b","3":"2"},{"1":"Robert","2":"b","3":"3"},{"1":"Sam","2":"a","3":"1"},{"1":"Sam","2":"a","3":"2"},{"1":"Sam","2":"a","3":"3"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 <p><code>separate_rows</code>: useful when you have a variable number of entries in a “cell”.</p>
+<pre class="r"><code>df &lt;- data.frame(
+  x = 1:3,
+  y = c(&quot;a&quot;, &quot;d,e,f&quot;, &quot;g,h&quot;),
+  z = c(&quot;1&quot;, &quot;2,3,4&quot;, &quot;5,6&quot;),
+  stringsAsFactors = FALSE
+)
+separate_rows(df, y, z, convert = TRUE)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["x"],"name":[1],"type":["int"],"align":["right"]},{"label":["y"],"name":[2],"type":["chr"],"align":["left"]},{"label":["z"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"1","2":"a","3":"1"},{"1":"2","2":"d","3":"2"},{"1":"2","2":"e","3":"3"},{"1":"2","2":"f","3":"4"},{"1":"3","2":"g","3":"5"},{"1":"3","2":"h","3":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 <p><code>unite</code> and <code>separate</code>.</p>
 <p><code>uncount</code> (as the opposite of <code>dplyr::count()</code>)</p>
+<pre class="r"><code>df &lt;- tibble::tibble(x = c(&quot;a&quot;, &quot;b&quot;), n = c(1, 2))
+uncount(df, n)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["x"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"a"},{"1":"b"},{"1":"b"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 <p><code>drop_na</code> and <code>replace_na</code></p>
 <p><code>fill</code></p>
+<pre class="r"><code>df &lt;- data.frame(Month = 1:12, Year = c(2000, rep(NA, 11)))
+df %&gt;% fill(Year)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Month"],"name":[1],"type":["int"],"align":["right"]},{"label":["Year"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"2000"},{"1":"2","2":"2000"},{"1":"3","2":"2000"},{"1":"4","2":"2000"},{"1":"5","2":"2000"},{"1":"6","2":"2000"},{"1":"7","2":"2000"},{"1":"8","2":"2000"},{"1":"9","2":"2000"},{"1":"10","2":"2000"},{"1":"11","2":"2000"},{"1":"12","2":"2000"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 <p><code>full_seq</code></p>
 </div>
 <div id="time-remaining" class="section level2">
