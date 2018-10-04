@@ -34,7 +34,7 @@ a + geom_point(shape = 7)
     
     - What's up with `pch`?
 ```{r}
-a + geom_point(pch=7)
+a + geom_point(pch=25)
 ```
     
 
